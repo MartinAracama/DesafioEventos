@@ -8,7 +8,7 @@ const botonVaciarCarrito = document.querySelector("vaciarCarrito")
 let carrito = [];
 
 
-let total = 0;
+// let total = 0;
 
 function renderizarProductos() {
   let tienda = document.getElementById("tienda");
