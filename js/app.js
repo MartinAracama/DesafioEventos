@@ -1,15 +1,17 @@
 
-
+// Funciones
 const carritoContainer = document.querySelector("#carritoContainer")
 const contadorCarrito = document.querySelector("#contadorCarrito")
 const precioTotal = document.querySelector("#precioTotal")
-const botonVaciarCarrito = document.querySelector("vaciarCarrito")
+const botonVaciarCarrito = document.querySelector("#vaciarCarrito")
 
 let carrito = [];
 
 
-// let total = 0;
+let total = 0;
 
+
+// DOM de productos
 function renderizarProductos() {
   let tienda = document.getElementById("tienda");
 
@@ -34,6 +36,8 @@ function renderizarProductos() {
 
 renderizarProductos();
 
+
+// Funcion para agregar productos al carrito
 const agregarProductoAlCarrito = (id) => {
   const producto = BASE.find( (producto) => producto.id == id );
   carrito.push(producto)
@@ -44,6 +48,7 @@ const agregarProductoAlCarrito = (id) => {
   renderizarTotal()
 }
 
+// Funcion para eliminar productos del carrito
 const eliminarDelCarrito = (id) => {
   const producto = carrito.find((producto) => producto.id == id)
   const indice = carrito.indexOf(producto)
@@ -54,6 +59,7 @@ const eliminarDelCarrito = (id) => {
   renderizarTotal() 
 }
 
+// Funcion para vaciar el carrito de una sola vez
 const vaciarCarrito = () => {
    carrito = []  
 
@@ -65,21 +71,22 @@ const vaciarCarrito = () => {
 botonVaciarCarrito.addEventListener("click", vaciarCarrito)
 
 const renderizarCarrito = () => {
-  carritoContainer.innerHTML= "";
+  carritoContainer.innerHTML= ""
 
-  carrito.forEach((e) => {
+  carrito.forEach((producto) => {
     const div = document.createElement("div")
     div.classList.add("productoEnCarrito")
 
     div.innerHTML = `
-                  <p>${e.nombre}</p>
-                  <p>${e.precio}</p>
+                  <p>${producto.nombre}</p>
+                  <p>${producto.precio}</p>
                   <button onclick="eliminarDelCarrito(${producto,id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
                   `
     carritoContainer.append(div)
   })
 }
 
+// Funcion para calcular total
 const renderizarCantidad = () => {
     contadorCarrito.innerText = carrito.length
 }
